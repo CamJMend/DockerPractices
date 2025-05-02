@@ -11,15 +11,16 @@
 ```bash
 cd bot-pregunta
 ```
-2. Construir la imagen Docker con
+2. Abrir Docker
+3. Construir la imagen Docker con
 ```bash
 docker build -t bot-app .
 ```
-3. Crear el volumen Docker para almacenar el historial con 
+4. Crear el volumen Docker para almacenar el historial con 
 ```bash
 docker volume create bot-historial
 ```
-4. Ejecutar el contenedor con el volumen con
+5. Ejecutar el contenedor con el volumen con
 ```bash
 docker run --rm -v bot-historial:/data bot-app "Juan" "¿Cómo funciona Docker?"
 ```
@@ -28,7 +29,7 @@ docker run --rm -v bot-historial:/data bot-app "Juan" "¿Cómo funciona Docker?"
 docker run --rm -v bot-historial:/data bot-app "Maria" "¿Qué son los volúmenes en Docker?"
 docker run --rm -v bot-historial:/data bot-app "Pedro" "¿Cómo instalo Python?"
 ```
-5. Ver el contenido del historial con:
+6. Ver el contenido del historial con:
 ```bash
 docker run --rm -v bot-historial:/data alpine cat /data/historial.txt
 ```
