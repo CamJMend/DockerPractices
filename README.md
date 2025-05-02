@@ -1,5 +1,39 @@
 # Docker Cases and practices
 
+## Bot
+
+### Archivos Implementados:
+- bot.py: Este script de Python recibe dos parámetros a través de la línea de comandos: el primer parámetro es el nombre del usuario y el segundo parámetro es la pregunta que hace el usuario. El script registra estos datos junto con la fecha y hora actual en un archivo llamado historial.txt dentro de un directorio /data, que será donde montaremos nuestro volumen.
+- Dockerfile: Define cómo se construirá nuestra imagen Docker
+
+### Ejecutar el código
+1. Abrir el código fuente y entrar a la carpeta correspondiente:
+```bash
+cd bot-pregunta
+```
+2. Construir la imagen Docker con
+```bash
+docker build -t bot-app .
+```
+3. Crear el volumen Docker para almacenar el historial con 
+```bash
+docker volume create bot-historial
+```
+4. Ejecutar el contenedor con el volumen con
+```bash
+docker run --rm -v bot-historial:/data bot-app "Juan" "¿Cómo funciona Docker?"
+```
+- Para registrar mas preguntas:
+```bash
+docker run --rm -v bot-historial:/data bot-app "Maria" "¿Qué son los volúmenes en Docker?"
+docker run --rm -v bot-historial:/data bot-app "Pedro" "¿Cómo instalo Python?"
+```
+5. Ver el contenido del historial con:
+```bash
+docker run --rm -v bot-historial:/data alpine cat /data/historial.txt
+```
+
+
 ## Microservices Flask
 
 ### Archivos Implementados:
